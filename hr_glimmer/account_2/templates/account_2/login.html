@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AI-Powered HR Consulting</title>
+    <link rel="stylesheet" href="{% static 'css/Login.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login to Your Account</h1>
+        <form method="post" action="{% url 'user_login' %}">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            <label for="username">User name</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+
+            <label for="password">Password</label>
+            {{ form.password }}
+            {{ form.password.errors }}
+            <button type="submit" class="btn login-btn">Login</button>
+            <a href="{% url 'register_company' %}" class="button"><button type="button" class="btn">Get a demo</button></a>
+            
+        </form>
+    </div>
+</body>
+</html>

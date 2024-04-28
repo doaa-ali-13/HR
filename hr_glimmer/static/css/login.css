@@ -1,0 +1,103 @@
+/* login.css */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ffffff, #ffffff); /* Subtle background gradient */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.login-container {
+    background: white;
+    padding: 40px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 350px; /* Wider than before for better spacing */
+    margin: 20px; /* Space from the viewport edges */
+}
+
+h1 {
+    color: #333;
+    font-size: 24px;
+    font-weight: 300; /* Lighter font weight */
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold; /* Bold labels */
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 15px; /* Larger padding for better focus area */
+    margin-bottom: 15px; /* Spacing between each field */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 14px; /* Slightly larger font size */
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); /* Subtle inset shadow for depth */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none; /* Remove default focus outline */
+    border-color: #008a94; /* Highlighted border color when focused */
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); /* More pronounced inset shadow for focus */
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 15px; /* Larger padding for a more clickable area */
+    margin-top: 10px; /* Reduce margin-top as spacing is now handled by input margin-bottom */
+    background-color: black; /* Primary action color */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold; /* Bold button text */
+    text-transform: uppercase; /* Uppercase text for buttons */
+    letter-spacing: 1px; /* Spacing for a touch of sophistication */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+}
+
+.btn:hover {
+    background-color: #008a94; /* Slightly darker color on hover */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Shadow effect for depth */
+}
+
+.login-btn {
+    background-color: #008a94; /* Keeping the differentiation for the login button */
+}
+
+.login-btn:hover {
+    background-color: #008a94;
+}
+
+/* Optional: Add a footer for any additional information */
+.login-footer {
+    position: absolute;
+    bottom: 20px; /* Position it at the bottom of the viewport */
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Handle the case for an error message or note */
+.note {
+    font-size: 14px;
+    color: #e53935; /* Color for warnings or notes */
+    margin: 20px 0; /* Space for the note */
+}

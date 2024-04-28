@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Employee Registration - AI-Powered HR Consulting</title>
+    <link rel="stylesheet" href="HrReg.css">
+</head>
+<body>
+    <div class="registration-container">
+        <h1>HR Employee Registration</h1>
+        <form action="/submit-your-form-handler" method="post">
+            <label for="companyName">Company Name</label>
+            <input type="text" id="companyName" name="companyName" required>
+
+            <label for="companyAddress">Company Address</label>
+            <input type="text" id="companyAddress" name="companyAddress" required>
+
+            <label for="companyEmail">Company Email</label>
+            <input type="email" id="companyEmail" name="companyEmail" required>
+
+            <label for="companyEmail">Company Number</label>
+            <input type="email" id="companyEmail" name="companyEmail" required>
+
+            <label for="industry">Company's Field</label>
+            <select id="industry" name="industry">
+                <option value="">Select Industry</option>
+                <option value="technology">Technology</option>
+                <option value="finance">Finance</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="education">Education</option>
+                <option value="manufacturing">Manufacturing</option>
+                <option value="retail">Retail</option>
+                <!-- Add other industries as needed -->
+            </select>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+            <button type="button" class="btn" onclick="window.location.href='./HrDash.html';">Register</button>
+        </form>
+    </div>
+</body>
+</html>

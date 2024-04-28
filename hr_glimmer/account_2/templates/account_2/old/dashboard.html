@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h2>Dashboard</h2>
+<p>Welcome, {{ request.user.username }}!</p>
+{% if request.user.is_superadmin %}
+    <p>You are logged in as a Superadmin.</p>
+{% elif request.user.is_companyadmin %}
+    <p>You are logged in as a Company Admin.</p>
+    <a href="{% url 'employee_signup' %}" class="btn btn-primary">Add Employee</a>
+
+{% elif request.user.is_employee %}
+    <p>You are an Employee.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,428 @@
+/* Basic Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 30px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0);
+    position: relative;
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.navbar-logo {
+    font-size: 1.8rem;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar-logo span {
+    color: #008a94;
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
+.navbar-menu li {
+    padding: 0 15px;
+}
+
+.navbar-menu li a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-menu li a:hover,
+.navbar-menu li a:focus {
+    color: #008a94;
+}
+
+.navbar-login-button {
+    padding: 8px 16px;
+    background-color: #008a94;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.navbar-login-button:hover {
+    background-color: #007B8A;
+}
+
+/* Responsive Navbar Adjustments */
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-menu {
+        flex-direction: column;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .navbar-menu li {
+        text-align: center;
+        width: 100%;
+    }
+
+    .navbar-menu li a {
+        padding: 10px 0;
+    }
+
+    .navbar-login-button {
+        width: 90%;
+        margin-top: 10px;
+    }
+}
+
+/* Header and Hero Section */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ll{
+    color: #007B8A;
+}
+
+.hero-section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0px 70px;
+    height: 83vh;
+}
+
+.left-column, .right-column {
+    flex: 1;
+    padding: 40px 40px;
+}
+
+.left-column {
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.left-column h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.left-column p {
+    font-size: 1.2rem;
+    margin: 20px 0;
+}
+
+.left-column button {
+    padding: 10px 20px;
+    background-color: #008a94;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.left-column button:hover {
+    background-color: #008a94;
+}
+
+.right-column {
+    flex: 1; /* Take up only the available space */
+    display: flex;
+    align-items: center; /* Center the content vertically */
+    justify-content: center; /* Center the content horizontally */
+    position: relative; /* Position relative to allow absolute positioning within */
+}
+
+.right-column img {
+    max-width: 100%; /* Limit the image width to not exceed the column */
+    height: auto; /* Maintain the aspect ratio of the image */
+    object-fit: contain; /* Ensure the full image is shown */
+}
+
+
+.right-column::before {
+    content: '';
+    position: absolute;
+    top: 35px; /* Adjust as needed */
+    right: -20px; /* Adjust as needed */
+    bottom: -370px; /* Adjust as needed */
+    left: -20px; /* Adjust as needed */
+    background: url('image/haha.jpg') no-repeat center center;
+    background-size: cover; /* Cover the entire area of the pseudo-element */
+    z-index: 0; /* Below the image */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%, 10% 50%); /* Custom shape */
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column; /* Stack columns vertically on smaller screens */
+    }
+
+    .left-column, .right-column {
+        width: 100%; /* Full width on smaller screens */
+        padding: 10px; /* Adjust padding as necessary */
+        text-align: center; /* Center text for the left column */
+    }
+
+    .right-column {
+        order: -1; /* Place the image above the text on small screens */
+    }
+
+    .right-column img {
+        width: auto; /* Allow the width to be auto so the image can scale within the column */
+        max-height: none; /* Remove max-height restriction for small screens */
+    }
+}
+
+footer {
+    background-color: #2c2c2c; /* Dark background color */
+    color: #fff;
+    padding: 40px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start; /* Align to the top */
+    font-size: 14px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    flex-wrap: wrap; /* Wrap for smaller screens */
+}
+
+.footer-column {
+    margin-right: 30px;
+}
+
+.footer-column h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.footer-column ul {
+    
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-column ul li a {
+    
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: #008a94; /* Highlight color */
+}
+
+.footer-cta p {
+    margin-bottom: 20px;
+}
+
+.footer-cta button {
+    background-color: #008a94; /* Call-to-action button color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.footer-cta button:hover {
+    background-color: #006972; /* Darker on hover */
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+    }
+
+    .footer-column {
+        margin: 0 0 20px;
+    }
+
+    .footer-cta button {
+        width: 100%; /* Full width button on small screens */
+    }
+}
+
+
+/* ... existing styles ... */
+
+.why-choose-us {
+    height: 65vh;
+    background: #ffffff; /* Light background to differentiate the section from hero section */
+    padding:  0; /* Ample padding above and below the section */
+    text-align: center; /* Center-align the text */
+}
+
+.why-choose-us .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px; /* Padding on the sides for mobile screens */
+}
+
+.why-choose-us h2 {
+    font-size: 2.2rem;
+    margin-bottom: 30px; /* Space between heading and the reason items */
+    color: #333; /* Dark color for heading */
+}
+
+.why-choose-us .reasons {
+    display: flex;
+    justify-content: space-around; /* Evenly space the reason items */
+    flex-wrap: wrap; /* Wrap onto new lines on smaller screens */
+}
+
+.why-choose-us .reason {
+    flex-basis: 30%; /* Roughly one-third, adjust as needed */
+    margin-bottom: 20px; /* Space between rows when wrapped */
+}
+
+.why-choose-us .reason img {
+    max-width: 20%; /* Adjust size as needed */
+    height: auto; /* Keep aspect ratio intact */
+    margin-bottom: 20px; /* Spacing below image */
+    
+    
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for effects */
+}
+
+.why-choose-us .reason h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px; /* Space between heading and paragraph */
+}
+
+.why-choose-us .reason p {
+    font-size: 1rem;
+    line-height: 1.6; /* Line height for readability */
+    color: #666; /* Lighter color for paragraph text */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .why-choose-us .reasons {
+        flex-direction: column;
+        align-items: center; /* Align items to center on smaller screens */
+    }
+
+    .why-choose-us .reason {
+        flex-basis: 80%; /* Full width on smaller screens */
+        margin-bottom: 40px; /* Increase space between items */
+    }
+    .why-choose-us .reason img {
+        max-width: 80px; /* Smaller size on mobile devices */
+    }
+}
+
+/* ... existing styles ... */
+
+/* ... existing styles ... */
+
+.our-specialization {
+    background: #ffffff; /* White background for the specialization section */
+    padding: 50px 0; /* Spacing above and below the cards */
+    text-align: center; /* Center-align the text */
+}
+
+.our-specialization .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px; /* Padding on the sides for mobile screens */
+}
+
+.our-specialization h2 {
+    font-size: 2.2rem;
+    margin-bottom: 30px; /* Space between heading and the cards */
+    color: #333; /* Dark color for heading */
+}
+
+.our-specialization .cards {
+    display: flex;
+    justify-content: space-around; /* Evenly space the cards */
+    flex-wrap: wrap; /* Wrap onto new lines on smaller screens */
+}
+
+.our-specialization .card {
+    width: 300px; /* Fixed width for each card */
+    margin-bottom: 20px; /* Space between rows when wrapped */
+    padding: 20px; /* Padding within the card */
+    background: #fff; /* Card background */
+    border-radius: 20px; /* Rounded corners like in the screenshot */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover effects */
+}
+
+.our-specialization .card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+}
+
+.our-specialization .card-icon img {
+    max-width: 60px; /* Adjust icon size */
+    margin-bottom: 20px; /* Spacing below icon */
+}
+
+.our-specialization .card h3 {
+    font-size: 1.4rem;
+    color: #333; /* Dark color for card titles */
+}
+
+.our-specialization .card p {
+    font-size: 1rem;
+    color: #666; /* Lighter color for card text */
+    margin-bottom: 20px; /* Spacing below paragraph */
+}
+
+.our-specialization .card-link {
+    color: #008a94; /* Brand color for links */
+    text-decoration: none; /* No underline */
+    font-weight: bold; /* Make it stand out */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .our-specialization .cards {
+        flex-direction: column;
+        align-items: center; /* Align cards to center on smaller screens */
+    }
+
+    .our-specialization .card {
+        width: 80%; /* Full width cards on smaller screens */
+        margin-bottom: 40px; /* Increased space between cards */
+    }
+}
+
+/* ... existing styles ... */
