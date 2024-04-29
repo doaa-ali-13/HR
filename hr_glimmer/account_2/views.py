@@ -61,7 +61,6 @@ def employee_signup(request):
     if request.method == 'POST':
         form = EmployeeSignUpForm(request.POST)
         if form.is_valid():
-            inactive_user = send_verification_email(request, form)
             company = request.user.company_profile
             user = form.save(commit=True, company=company)
             login(request, user)  # Automatically log in the employee
