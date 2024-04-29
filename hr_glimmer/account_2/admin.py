@@ -8,7 +8,7 @@ def create_user_for_company(modeladmin, request, queryset):
     for company in queryset:
         if not company.user and company.temp_email:  # Check if a user does not already exist
             user = User.objects.create(
-                username=company.company_name,
+                username=company.temp_email,
                 email=company.temp_email
             )
             user.is_companyadmin = True

@@ -99,6 +99,7 @@ class EmployeeSignUpForm(UserCreationForm):
     def save(self, commit=True, company=None):
         user = super().save(commit=False)
         user.is_employee = True
+        
         if commit:
             user.save()
             Employee.objects.create(
@@ -191,9 +192,9 @@ class CompanyRegistrationForm(forms.ModelForm):
 
 class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={
-        'id': 'username',
-        'name': 'username',
-        'placeholder': 'Your user name',
+        'id': 'email',
+        'name': 'email',
+        'placeholder': 'Your Email',
         'required': 'required'
     }))
 

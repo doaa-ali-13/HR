@@ -6,7 +6,7 @@ class User(AbstractUser):
     is_superadmin = models.BooleanField(default=False, help_text=_("Designates whether the user can manage all companies and their employees."))
     is_companyadmin = models.BooleanField(default=False, help_text=_("Designates whether the user can manage a specific company and its employees."))
     is_employee = models.BooleanField(default=False, help_text=_("Designates whether the user is an employee of a company."))
-
+    
 class Company(models.Model):
     INDUSTRY_CHOICES = (
         ('tech', _('Technology')),
