@@ -7,6 +7,7 @@ from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import user_passes_test
 from .models import Company
 
+from verify_email.email_handler import send_verification_email
 
 
 
@@ -20,7 +21,6 @@ def companyadmin_check(user):
 
 
 def superadmin_signup(request):
-  
     if request.method == 'POST':
         form = SuperAdminSignUpForm(request.POST)
         if form.is_valid():
@@ -46,7 +46,7 @@ def companyadmin_signup(request):
             employees = company.employees.all()  # Using the 'employees' related_name from the Company model
             print('========',employees, company)
             context = {'user':user, 'employees':employees, 'companyName': company.company_name}
-            return render(request, 'account_2/HrDash.html', context)
+            return redirec('user_login')
     else:
         form = CompanyAdminSignUpForm()
     return render(request, 'account_2/HrReg.html', {'form': form})
@@ -61,11 +61,12 @@ def employee_signup(request):
     if request.method == 'POST':
         form = EmployeeSignUpForm(request.POST)
         if form.is_valid():
+            inactive_user = send_verification_email(request, form)
             company = request.user.company_profile
             user = form.save(commit=True, company=company)
             login(request, user)  # Automatically log in the employee
             context = {'user':user, 'company':company}
-            return render(request, 'account_2/employee.html',context)
+            return redirect('employee')
     else:
         form = EmployeeSignUpForm()
     return render(request, 'account_2/empReg.html', {'form': form})
@@ -74,7 +75,7 @@ def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            username = request.POST['email']
+            username = request.POST['username']
             password = request.POST['password']
             user = authenticate(request, username=username, password=password)
             if user is not None:
@@ -88,13 +89,11 @@ def user_login(request):
                     context = {'user':user, 'employees':employees.count(), 'companyName': company, 'company_id':company.id}
                     return redirect('dashboard')
                 elif user.is_employee:
-                    return redirect('dashboard')
-                else:
-                    return redirect('dashboard')
+                    return HttpResponseForbidden("On progress...")
             else:
                 return render(request, 'account_2/login.html',  {'form': form, 'error': 'Invalid credentials'})
         else:
-            return render(request, 'account_2/login.html', {'form': form})
+            return redirect('user_login')
     else:
         form = LoginForm()  # Ensure this form is correctly defined in forms.py
         return render(request, 'account_2/login.html', {'form': form})
@@ -102,6 +101,7 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('user_login')
+
 
 def dashboard(request):
     if not request.user.is_authenticated or not request.user.is_companyadmin:

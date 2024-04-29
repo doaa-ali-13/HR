@@ -72,7 +72,7 @@ class EmployeeSignUpForm(UserCreationForm):
 
     class Meta:
         model = get_user_model()
-        fields = ['username', 'email', 'password1', 'password2', 'first_name', 'last_name', 'position']
+        fields = ['email', 'password1', 'password2', 'first_name', 'last_name', 'position']
         widgets = {
             'username': forms.TextInput(attrs={
                 'id': 'form-control',
@@ -99,7 +99,7 @@ class EmployeeSignUpForm(UserCreationForm):
     def save(self, commit=True, company=None):
         user = super().save(commit=False)
         user.is_employee = True
-        
+        user.username = user.email
         if commit:
             user.save()
             Employee.objects.create(
