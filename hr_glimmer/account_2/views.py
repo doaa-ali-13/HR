@@ -137,3 +137,10 @@ def employee(request):
     employees = company.employees.all()
     print(employees)
     return render(request, 'account_2/employee.html', {'employees': employees})
+
+def CompetencyLibraries(request):
+    return render(request, 'account_2/Competency.html')
+
+def Pricing(request):
+    return render(request, 'account_2/pricing.html')
+

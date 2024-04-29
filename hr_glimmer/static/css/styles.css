@@ -3,7 +3,6 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background: #f1f5f9;
 }
 
 /* Navbar Styles */
@@ -62,7 +61,7 @@ body, html {
 
 .navbar-login-button {
     padding: 8px 16px;
-    background-color: #008a94;
+    background: linear-gradient(to right, #008a94, rgba(0, 34, 78, 0.745)); /* Updated main color to gradient */
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -70,7 +69,7 @@ body, html {
 }
 
 .navbar-login-button:hover {
-    background-color: #007B8A;
+    background-color: #008a94;
 }
 
 /* Responsive Navbar Adjustments */
@@ -140,8 +139,8 @@ body, html {
 }
 
 .left-column button {
-    padding: 10px 20px;
-    background-color: #008a94;
+    padding: 15px 25px;
+    background: linear-gradient(to right, #008a94, rgba(0, 34, 78, 0.745)); /* Updated main color to gradient */;
     color: white;
     border: none;
     border-radius: 5px;
@@ -252,7 +251,7 @@ footer {
 }
 
 .footer-cta button {
-    background-color: #008a94; /* Call-to-action button color */
+    background: linear-gradient(to right, #008a94, rgba(0, 16, 36, 0.745)); /* Updated main color to gradient */; /* Call-to-action button color */
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -426,27 +425,4 @@ footer {
     }
 }
 
-/* GIF Container Styles */
-.gif-container {
-    width: 700px; /* Container takes the full width of the viewport */
-    display: flex; /* Use flexbox for centering */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    height: 1000vh; /* Make the container take at least the height of the viewport */
-    padding: 20px; /* Optional padding to ensure there's space around the GIF */
-    background: #000; /* Optional: background color in case of loading issues */
-}
-
-.gif-container img {
-    width: 80%; /* Adjust this to make the GIF bigger */
-    height: auto; /* Maintain aspect ratio */
-    max-height: 80vh; /* Optional: Limit the height to ensure it doesn't get too tall */
-}
-
-@media (max-width: 768px) {
-    .gif-container img {
-        width: 95%; /* Full width on smaller devices */
-        max-height: 50vh; /* Limit the height on smaller devices */
-    }
-}
-
+/* ... existing styles ... */
