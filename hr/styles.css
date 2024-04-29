@@ -3,6 +3,7 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
+    
 }
 
 /* Navbar Styles */
@@ -426,3 +427,25 @@ footer {
 }
 
 /* ... existing styles ... */
+.gif-container {
+    width: 700px; /* Container takes the full width of the viewport */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 1000vh; /* Make the container take at least the height of the viewport */
+    padding: 20px; /* Optional padding to ensure there's space around the GIF */
+    background: #000; /* Optional: background color in case of loading issues */
+}
+
+.gif-container img {
+    width: 80%; /* Adjust this to make the GIF bigger */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 80vh; /* Optional: Limit the height to ensure it doesn't get too tall */
+}
+
+@media (max-width: 768px) {
+    .gif-container img {
+        width: 95%; /* Full width on smaller devices */
+        max-height: 50vh; /* Limit the height on smaller devices */
+    }
+}
