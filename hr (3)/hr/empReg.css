@@ -1,0 +1,89 @@
+/* empReg.css */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.registration-container {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;  /* Increased for softer corners */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);  /* Deeper shadow for more depth */
+    width: 100%;
+    max-width: 500px;  /* Uniform width as other forms */
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 300;  /* Lighter font weight for modern look */
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;  /* Reduced for tighter layout */
+    color: #333;  /* Darker for better readability */
+    font-size: 14px;
+    font-weight: bold;  /* Bold labels for clarity */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 15px;  /* Increased padding for better interaction */
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;  /* Softer radius */
+    box-sizing: border-box;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);  /* Subtle shadow for depth */
+    font-size: 14px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #008a94;  /* Highlighted border color when focused */
+    box-shadow: inset 0 2px 4px rgba(0, 138, 148, 0.2);  /* More pronounced shadow for focus */
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 15px;  /* Increased padding for a more clickable area */
+    margin-top: 20px;  /* Reduced top margin for layout consistency */
+    background-color: #008a94;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;  /* Uppercase text for a commanding button presence */
+    transition: background-color 0.3s, box-shadow 0.3s;  /* Smooth transition for hover effects */
+}
+
+.btn:hover {
+    background-color: #008a94;  /* Slightly darker color on hover for feedback */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Shadow effect for depth */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .registration-container {
+        padding: 20px;  /* Reduced padding for smaller screens */
+    }
+
+    .btn {
+        padding: 12px;  /* Adjust padding on smaller screens */
+    }
+}
