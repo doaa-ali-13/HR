@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.urls import reverse
 from .forms import SuperAdminSignUpForm, CompanyAdminSignUpForm, EmployeeSignUpForm, LoginForm, CompanyRegistrationForm
 from django.contrib.auth.decorators import login_required
@@ -7,9 +7,11 @@ from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import user_passes_test
 from .models import Company
 
-from verify_email.email_handler import send_verification_email
+from django.core.mail import send_mail, EmailMessage
+from django.urls import reverse
+from .utils import generate_verification_token, verify_token
 
-
+owner_email = 'doaa34333@gmail.com'
 
 def superadmin_check(user):
     return user.is_authenticated and user.is_superadmin
@@ -20,52 +22,31 @@ def companyadmin_check(user):
 
 
 
-def superadmin_signup(request):
-    if request.method == 'POST':
-        form = SuperAdminSignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)  # Automatically log in the superadmin
-            return redirect('/admin/')
-    else:
-        form = SuperAdminSignUpForm()
-    return render(request, 'account_2/register.html', {'form': form})
-
-
-@user_passes_test(superadmin_check)
-def companyadmin_signup(request):
-    if not request.user.is_authenticated or not request.user.is_superadmin:
-        return HttpResponseForbidden("Only super admins can access this page.")
-
-    if request.method == 'POST':
-        form = CompanyAdminSignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)  # Automatically log in the company admin
-            company = user.company_profile
-            employees = company.employees.all()  # Using the 'employees' related_name from the Company model
-            print('========',employees, company)
-            context = {'user':user, 'employees':employees, 'companyName': company.company_name}
-            return redirec('user_login')
-    else:
-        form = CompanyAdminSignUpForm()
-    return render(request, 'account_2/HrReg.html', {'form': form})
 
 
 @user_passes_test(companyadmin_check)
 def employee_signup(request):
-    
-    if not request.user.is_authenticated or not request.user.is_companyadmin:
-        return HttpResponseForbidden("Only company admins can access this page.")
-
     if request.method == 'POST':
         form = EmployeeSignUpForm(request.POST)
         if form.is_valid():
+            email = request.POST.get('email')
+            token = generate_verification_token(email)
+            verification_url = request.build_absolute_uri(reverse('verify_email', args=[token]))
+            try:
+            # Send verification email
+                send_mail(
+                    'Email Verification',
+                    f'Click the link to verify your email: {verification_url}',
+                    'no-reply@example.com',
+                    [email]
+                )
+            except Exception as e:
+                return HttpResponse(f"Error sending email: {str(e)}")
             company = request.user.company_profile
             user = form.save(commit=True, company=company)
             login(request, user)  # Automatically log in the employee
             context = {'user':user, 'company':company}
-            return redirect('employee')
+            return  redirect('verifyEmail')
     else:
         form = EmployeeSignUpForm()
     return render(request, 'account_2/empReg.html', {'form': form})
@@ -101,10 +82,9 @@ def user_logout(request):
     logout(request)
     return redirect('user_login')
 
-
+@login_required
+@user_passes_test(companyadmin_check)
 def dashboard(request):
-    if not request.user.is_authenticated or not request.user.is_companyadmin:
-        return HttpResponseForbidden("Only company admins can access this page.")
     user = request.user
     company = user.company_profile
     employees = company.employees.all() 
@@ -119,12 +99,36 @@ def register_company(request):
     if request.method == 'POST':
         form = CompanyRegistrationForm(request.POST)
         if form.is_valid():
+            customer_email = request.POST['email']
+            company_name = request.POST['company_name']
+            phone_number = request.POST['phone_number']
             # Future: handle user creation here
             company = form.save(commit=False)
             # Placeholder for user creation logic
             # User creation and association would go here
             company.save()
-            return  HttpResponseForbidden("We recieve you request, we will catch with you later!")
+            try: 
+                send_mail(
+                subject='Order Confirmation',
+                message=f'Dear {company_name}, thank you for your interest in our srvices. we will catch with you as soon as possible! ',
+                from_email='no-reply@example.com',
+                recipient_list=[customer_email],
+                fail_silently=False,
+                )
+            except Exception as e:
+                return HttpResponse(f"Error sending email: {str(e)}")
+            # Email 2: Notification to the owner
+            email_to_owner = EmailMessage(
+                subject='New Order Notification',
+                body=f'A new demo has been requested from {company_name} with these contact info: phone: {phone_number}/ email: {customer_email}.',
+                from_email='no-reply@example.com',
+                to=[owner_email]
+            )
+            try:
+                email_to_owner.send()
+            except Exception as e:
+                return HttpResponse(f"Error sending email: {str(e)}")
+            return  redirect('companymessageRegister')
     else:
         form = CompanyRegistrationForm()
 
@@ -144,3 +148,26 @@ def CompetencyLibraries(request):
 def Pricing(request):
     return render(request, 'account_2/pricing.html')
 
+def verify_email(request, token):
+    email = verify_token(token)
+    if email:
+        User = get_user_model()
+        try:
+            user = User.objects.get(email=email)
+            user.is_active = True  # Activate the user's account
+            user.save()
+            return  redirect('verificationDone')
+        except User.DoesNotExist:
+            return render(request, 'account_2/verification_failed.html')
+    else:
+        return render(request, 'account_2/verification_failed.html')
+
+
+def verifyEmail(request):
+    return HttpResponseForbidden('please verify your email!')        
+
+def verificationDone(request):
+    return HttpResponseForbidden('your email has been verified!')        
+
+def companymessageRegister(request):
+     return HttpResponseForbidden('we got your request, we will catch with yiu later!')    

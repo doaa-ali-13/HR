@@ -13,14 +13,7 @@
         <h1>Employee Registration</h1>
         <form method="post" action="{% url 'employee_signup' %}">
             {% csrf_token %}
-            <div class="mb-3">
-                <label for="{{ form.username.id_for_label }}" class="form-label">Username</label>
-                {{ form.username }}
-                {% for error in form.username.errors %}
-                    <div class="alert alert-danger">{{ error }}</div>
-                {% endfor %}
-            </div>
-    
+
             <div class="mb-3">
                 <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
                 {{ form.email }}
@@ -72,5 +65,15 @@
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>
+    <script>
+        // Ensure this script is loaded on pages with forms or sensitive content
+        window.addEventListener('pageshow', function(event) {
+        // Check if the page is being shown from the browser cache
+        if (event.persisted) {
+            window.location.reload(); // Reload the page to prevent stale content
+        }
+    });
+    
+    </script>
 </body>
 </html>

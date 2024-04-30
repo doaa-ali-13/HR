@@ -8,4 +8,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('verification/', include('verify_email.urls')),	
     path('account_2/', include('account_2.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),  # Include Django's built-in auth URLs
 ]
