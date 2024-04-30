@@ -33,6 +33,7 @@ class CompanyAdminSignUpForm(UserCreationForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         user.is_companyadmin = True
+        user.is_active = False
         if commit:
             user.save()
             Company.objects.create(
@@ -100,6 +101,7 @@ class EmployeeSignUpForm(UserCreationForm):
         user = super().save(commit=False)
         user.is_employee = True
         user.username = user.email
+        user.is_active = False
         if commit:
             user.save()
             Employee.objects.create(

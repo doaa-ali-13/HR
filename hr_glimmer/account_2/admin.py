@@ -2,7 +2,9 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import User, Company, Employee
 from django.contrib.auth.hashers import make_password
-
+from .utils import generate_verification_token, verify_token
+from django.urls import reverse
+from django.core.mail import send_mail
 
 def create_user_for_company(modeladmin, request, queryset):
     for company in queryset:
@@ -12,7 +14,19 @@ def create_user_for_company(modeladmin, request, queryset):
                 email=company.temp_email
             )
             user.is_companyadmin = True
+            user.is_active = False
             user.set_password(company.temp_password_hash)  # Assuming you have a valid hash stored
+            email = user.email
+            token = generate_verification_token(email)
+            verification_url = request.build_absolute_uri(reverse('verify_email', args=[token]))
+
+            # Send verification email
+            send_mail(
+                'Email Verification',
+                f'Click the link to verify your email: {verification_url}',
+                'no-reply@example.com',
+                [email]
+            )
             user.save()
             company.user = user
             company.temp_email = None

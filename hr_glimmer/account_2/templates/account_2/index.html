@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome - AI-Powered HR Consulting</title>
+    <title>Responsive Navbar</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
+    <body>
+        <div class="navbar">
             <div class="navbar-container">
+<<<<<<< HEAD
                 <a href="#home" class="navbar-logo">
                     HR<span>Consultingg</span>
                 </a>
@@ -22,17 +23,35 @@
                 </ul>
                 <a href="{% url 'user_login' %}" class="button"><button class="navbar-login-button">Login</button></a>
 
+=======
+                <a href="#" class="navbar-logo">Hr<span>Consulting</span></a>
+                <button class="navbar-toggler" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="right-navbar">
+                    <ul class="navbar-menu">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                    <button class="navbar-login-button" onclick="location.href='#login';">Log In</button>
+                </div>
+>>>>>>> 22295ff35bcbe661bf25783fcde584e9851e3a98
             </div>
-        </nav>
-       
+        </div>
     </header>
     <div class="hero-section">
         <div class="left-column">
-            <h4 class="ll">We have transformed consulting into a more advanced and accurate method</h4>
-            <h1>Empower Your Workforce with AI-Driven Insights</h1>
-            <p>Harness the power of artificial intelligence to seamlessly integrate learning and development strategies, craft tailored career paths, and design role-specific training programs. At 86400/Hr, we're redefining human resources to drive success in every role, preparing your team not just for the next step, but for a future of continual achievement.</p>
-            
-            <button onclick="window.location.href='#get-started';">Get Started</button>
+            <h1>How growing businesses unlock their people potential</h1>
+            <p>HrConsulting lets busy HR teams run meaningful people development, performance, and training programs from one single place - and at the click of a button.</p>
+            <ul class="benefits-list">
+                <li>In-depth consultation to ensure an effective rollout</li>
+                <li>AI-enhanced with automations that save you hours</li>
+                <li>Recession-friendly pricing</li>
+            </ul>
+            <button onclick="window.location.href='#get-demo';" class="get-demo-button">Get a demo</button>
         </div>
         <div class="right-column">
             
@@ -121,7 +140,16 @@
         </div>
     </section>
     
-    
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+    var toggler = document.querySelector('.navbar-toggler');
+    var menu = document.querySelector('.navbar-menu');
+    toggler.addEventListener('click', function () {
+        menu.classList.toggle('toggled');
+    });
+});
+
+        </script>
     
     <!-- Additional sections like About, Services, etc. -->
     
