@@ -6,20 +6,17 @@ body, html {
 }
 
 .navbar {
-    background-color: #fffffff3;
-    color: #000;
-    padding: 20px 40px;
-    
     position: fixed;
-    top: 0;
+    top: 10;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 1000; /* Highest to stay on top */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 20px 40px;
+    background-color: #fffffff3; /* Adjust color as needed */
 }
-
 .navbar-container {
     display: flex;
     justify-content: space-between;
@@ -49,7 +46,7 @@ body, html {
     color: #ffffff;
     font-size: 1rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -175,16 +172,25 @@ body, html {
 }
 
 .hero-section {
+    position: relative;
+    z-index: 1; /* Ensure it's above the main body content but below anything that might need to scroll over it */
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding-top: 120px;
-    padding-bottom: 62px;
-    padding-left: 120px;
-    padding-right: 120px;
-    height: auto; /* Changed from vh to auto for better scaling */
-    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    padding: 120px; /* Adjust padding as necessary */
+    height: 500px; /* Set a specific height for your hero section */
+    background: url('path_to_your_hero_image.jpg') no-repeat center center; /* Replace with your actual background image */
+    background-size: cover;
+    background-attachment: fixed; /* This keeps the background stationary */
 }
+
+.content-below-hero {
+    position: relative;
+    z-index: 2; /* Higher z-index to scroll over the hero section */
+    background: #fff; /* Ensure it has a solid background to cover the hero section */
+    padding-top: 20px; /* Optional spacing adjustment */
+}
+
 /* Left Column Styles */
 /* Left Column Styles */
 .hero-section .left-column h1 {
@@ -219,12 +225,12 @@ body, html {
     color: #fff;
     background-color: #008a94;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.navbar-login-button:hover {
+.navbar-login-button:hover .get-demo-butto{
     background-color: #006972;
 }
 
