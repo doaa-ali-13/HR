@@ -5,101 +5,165 @@ body, html {
     font-family: 'Arial', sans-serif;
 }
 
-/* Navbar Styles */
 .navbar {
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    padding: 30px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0);
-    position: relative;
+    background-color: #fffffff3;
+    color: #000;
+    padding: 20px 40px;
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .navbar-container {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    flex-wrap: wrap;
 }
-
+.right-navbar {
+    display: flex;
+    align-items: center;
+}
 .navbar-logo {
+    font-family: 'Merriweather', serif; ;
     font-size: 1.8rem;
-    color: rgb(0, 0, 0);
+    color: #000;
     text-decoration: none;
     font-weight: bold;
 }
 
 .navbar-logo span {
-    color: #008a94;
+    color: #005662;
+}
+.navbar-login-button {
+    padding: 8px 16px;
+    background: linear-gradient(to right, #008a94, rgba(0, 34, 78, 0.745));
+    color: #ffffff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.navbar-login-button:hover {
+    background-color: #006972;
+}
+.navbar-toggler {
+    display: none;  /* Ensure this is only shown when needed */
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 10px;
+}
+
+.navbar-toggler-icon {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #333;
+    position: relative;
+    transition: background 0s ease-in-out;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-toggler-icon::before {
+    top: -10px;
+}
+
+.navbar-toggler-icon::after {
+    top: 10px;
 }
 
 .navbar-menu {
-    list-style: none;
     display: flex;
-    margin: 0;
+    list-style: none;
     padding: 0;
-    flex-grow: 1;
-    justify-content: flex-end;
+    margin: 0 10px 0 0; /* Adjust spacing to your preference */
 }
-
 .navbar-menu li {
     padding: 0 15px;
 }
 
 .navbar-menu li a {
-    color: rgb(0, 0, 0);
+    color: #000;
     text-decoration: none;
     font-size: 1rem;
     transition: color 0.3s ease;
 }
-
 .navbar-menu li a:hover,
 .navbar-menu li a:focus {
     color: #008a94;
 }
-
-.navbar-login-button {
-    padding: 8px 16px;
-    background: linear-gradient(to right, #008a94, rgba(0, 34, 78, 0.745)); /* Updated main color to gradient */
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
+.hamburger-menu {
+    display: none; /* Hidden by default */
     cursor: pointer;
 }
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+    }
 
-.navbar-login-button:hover {
-    background-color: #008a94;
+    /* When the menu is toggled, display the navbar-menu */
+    .navbar-menu.toggled {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+    }
 }
 
-/* Responsive Navbar Adjustments */
 @media (max-width: 768px) {
     .navbar-container {
-        flex-direction: column;
-        align-items: center;
+        flex-wrap: wrap;
+    }
+    .navbar-toggler {
+        display: block; /* Ensure the toggler is visible */
+        order: 3; /* Makes sure toggler is last */
+    }
+
+
+    .right-navbar {
+        flex-grow: 1;
+        justify-content: flex-end;
     }
 
     .navbar-menu {
+        display: none; /* Hide initially on mobile */
+    }
+
+    .navbar-menu.toggled {
+        display: flex;
         flex-direction: column;
         width: 100%;
-        padding: 10px 0;
-    }
-
-    .navbar-menu li {
-        text-align: center;
-        width: 100%;
-    }
-
-    .navbar-menu li a {
-        padding: 10px 0;
+        order: 2;
     }
 
     .navbar-login-button {
-        width: 90%;
-        margin-top: 10px;
+        order: 1;
+        margin-top: 10px; /* Adds space between menu items and button on mobile */
+    }
+
+    .navbar-toggler {
+        order: 3;
+        margin-top: 10px; /* Aligns toggler below navbar items */
     }
 }
-
 /* Header and Hero Section */
 .header {
     display: flex;
@@ -113,14 +177,61 @@ body, html {
 .hero-section {
     display: flex;
     align-items: flex-start;
-    justify-content: center;
-    padding: 0px 70px;
-    height: 83vh;
+    justify-content: space-between;
+    padding-top: 120px;
+    padding-bottom: 62px;
+    padding-left: 120px;
+    padding-right: 120px;
+    height: auto; /* Changed from vh to auto for better scaling */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
 }
+/* Left Column Styles */
+/* Left Column Styles */
+.hero-section .left-column h1 {
+    font-family: 'Merriweather', serif; /* Updated font family */
+    font-size: 2.5rem;  /* Increase for emphasis */
+    font-weight: 300;  /* Lighter weight for a modern look */
+    margin-bottom: 30px;  /* Space between heading and content */
+    color: #005662;  /* A color that stands out but fits the theme */
+}
+
+.hero-section .left-column p {
+    font-size: 18px;
+    color: #000000;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.hero-section .left-column .benefits-list {
+    list-style-type: disc; /* Adds bullet points to list items */
+    padding-left: 20px; /* Indent for bullet points */
+}
+
+.hero-section .left-column .benefits-list li {
+    font-size: 16px;
+    color: #000000;
+    padding: 5px 0;
+}
+
+.hero-section .left-column .get-demo-button {
+    padding: 15px 30px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #008a94;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-login-button:hover {
+    background-color: #006972;
+}
+
 
 .left-column, .right-column {
     flex: 1;
-    padding: 40px 40px;
+    padding: 20px; /* Reduced padding for smaller screens */
 }
 
 .left-column {
@@ -129,17 +240,17 @@ body, html {
 }
 
 .left-column h1 {
-    font-size: 2.5rem;
-    color: #333;
+    font-size: 2rem; /* Adjusted for better scaling */
+    color: #000000;
 }
 
 .left-column p {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin: 20px 0;
 }
 
 .left-column button {
-    padding: 15px 25px;
+    padding: 10px 20px;
     background: linear-gradient(to right, #008a94, rgba(0, 34, 78, 0.745)); /* Updated main color to gradient */;
     color: white;
     border: none;
@@ -170,46 +281,66 @@ body, html {
 .right-column::before {
     content: '';
     position: absolute;
-    top: 35px; /* Adjust as needed */
+    top: 10px; /* Adjust as needed */
     right: -20px; /* Adjust as needed */
-    bottom: -370px; /* Adjust as needed */
+    bottom: -490px; /* Adjust as needed */
     left: -20px; /* Adjust as needed */
-    background: url('../images/haha.jpg') no-repeat center center;
+    background: url('../images/file.png') no-repeat center center;
     background-size: cover; /* Cover the entire area of the pseudo-element */
     z-index: 0; /* Below the image */
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%, 10% 50%); /* Custom shape */
+   
 }
 
 @media (max-width: 768px) {
     .hero-section {
-        flex-direction: column; /* Stack columns vertically on smaller screens */
+        flex-direction: column; /* Stack items vertically */
+    }
+    .hero-section .right-column img {
+        width: 100%; /* Ensure the image is not wider than its container */
+        height: auto; /* Maintain the aspect ratio of the image */
+        max-height: 300px; /* Optionally limit the image height */
+        object-fit: cover; /* Ensure the image covers the area without stretching */
     }
 
-    .left-column, .right-column {
-        width: 100%; /* Full width on smaller screens */
-        padding: 10px; /* Adjust padding as necessary */
-        text-align: center; /* Center text for the left column */
+    .right-column::before {
+        /* Adjust content, position, and other styles or remove this pseudo-element if not necessary */
+        display: none; /* If it's not necessary for the mobile layout, you can hide it */
+    }
+    .left-column,
+    .right-column {
+        width: 100%; /* Full width for both columns */
+        padding-top: 20px;
+        padding-right: 5px;
+        padding-left: 5px;
+        text-align: left; /* Center-align the text for smaller screens */
+    }
+
+    .left-column {
+        order: -1; /* This ensures that the text and button are on top */
     }
 
     .right-column {
-        order: -1; /* Place the image above the text on small screens */
+        order: 1; /* This will place the image underneath the text */
+        margin-top: 20px; /* Add some space between text and image */
     }
 
-    .right-column img {
-        width: auto; /* Allow the width to be auto so the image can scale within the column */
-        max-height: none; /* Remove max-height restriction for small screens */
+    /* Since we want to keep the image, we should not hide the pseudo-element */
+    .right-column::before {
+        /* Adjust or remove properties as necessary */
     }
 }
+
 
 footer {
-    background-color: #2c2c2c; /* Dark background color */
+    background-color: #2c2c2c;
     color: #fff;
-    padding: 40px;
+    padding: 20px;
     display: flex;
-    justify-content: space-evenly;
-    align-items: start; /* Align to the top */
-    font-size: 14px;
+    justify-content: space-around;
+    align-items: start;
+    flex-wrap: wrap; /* Ensure wrapping on small screens */
 }
+
 
 .footer-container {
     display: flex;
@@ -221,9 +352,9 @@ footer {
 }
 
 .footer-column {
-    margin-right: 30px;
+    flex: 1 1 200px; /* Flex basis of 200px, grows and shrinks */
+    margin: 10px;
 }
-
 .footer-column h3 {
     font-size: 18px;
     margin-bottom: 20px;
@@ -265,27 +396,24 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .footer-container {
+    footer {
         flex-direction: column;
+        align-items: center;
     }
 
     .footer-column {
-        margin: 0 0 20px;
-    }
-
-    .footer-cta button {
-        width: 100%; /* Full width button on small screens */
+        width: 100%; /* Full width on small screens */
+        margin: 10px 0;
     }
 }
-
 
 /* ... existing styles ... */
 
 .why-choose-us {
-    height: 65vh;
-    background: #ffffff; /* Light background to differentiate the section from hero section */
-    padding:  0; /* Ample padding above and below the section */
-    text-align: center; /* Center-align the text */
+    background: #ffffff;  /* Keep the background clean and simple */
+    padding: 50px 0;  /* Ample padding for breathing space */
+    text-align: center;  /* Centered text for a balanced look */
+    color: #000000;  /* Dark grey for text to keep it neutral and professional */
 }
 
 .why-choose-us .container {
@@ -295,11 +423,24 @@ footer {
 }
 
 .why-choose-us h2 {
-    font-size: 2.2rem;
-    margin-bottom: 30px; /* Space between heading and the reason items */
-    color: #333; /* Dark color for heading */
+    font-family: 'Merriweather', serif; ;
+    font-size: 2.5rem;  /* Increase for emphasis */
+    font-weight: 300;  /* Lighter weight for a modern look */
+    margin-bottom: 30px;  /* Space between heading and content */
+    color: #005662;  /* A color that stands out but fits the theme */
 }
-
+.why-choose-us p {
+    font-size: 1.2rem;  /* Slightly larger font size for readability */
+    line-height: 1.8;  /* More line height for better reading experience */
+    color: #000000;  /* Softer color for the body text */
+    max-width: 800px;  /* Max width for better line length control */
+    margin: auto;  /* Centering the paragraph */
+}
+.why-choose-us .reason h3 {
+    font-size: 1.5rem;  /* Larger size for subheadings */
+    font-weight: bold;  /* Bold for emphasis */
+    color: #004851;  /* Darker shade for headings */
+}
 .why-choose-us .reasons {
     display: flex;
     justify-content: space-around; /* Evenly space the reason items */
@@ -312,25 +453,26 @@ footer {
 }
 
 .why-choose-us .reason img {
-    max-width: 20%; /* Adjust size as needed */
-    height: auto; /* Keep aspect ratio intact */
-    margin-bottom: 20px; /* Spacing below image */
-    
-    
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for effects */
+    width: 50px;  /* Smaller images to not overpower the text */
+    height: auto;  /* Maintain aspect ratio */
+    margin-bottom: 15px;  /* Space between image and text */
 }
-
 .why-choose-us .reason h3 {
     font-size: 1.4rem;
     margin-bottom: 10px; /* Space between heading and paragraph */
 }
 
 .why-choose-us .reason p {
-    font-size: 1rem;
-    line-height: 1.6; /* Line height for readability */
-    color: #666; /* Lighter color for paragraph text */
+    font-size: 1rem;  /* Standard size for detail text */
+    color: #000000;  /* Light grey for easy reading */
+    margin-bottom: 20px;  /* Space below paragraphs */
 }
-
+.why-choose-us .reason:hover {
+    background-color: #ffffff;  /* Light background on hover for focus */
+      /* Soft shadow for depth */
+    border-radius: 20px;  /* Rounded corners for modern look */
+    transform: scale(1.05);  /* Slight increase in size on hover */
+}
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .why-choose-us .reasons {
@@ -352,7 +494,7 @@ footer {
 /* ... existing styles ... */
 
 .our-specialization {
-    background: #ffffff; /* White background for the specialization section */
+    background: #fcfcfc; /* White background for the specialization section */
     padding: 50px 0; /* Spacing above and below the cards */
     text-align: center; /* Center-align the text */
 }
@@ -364,65 +506,85 @@ footer {
 }
 
 .our-specialization h2 {
-    font-size: 2.2rem;
-    margin-bottom: 30px; /* Space between heading and the cards */
-    color: #333; /* Dark color for heading */
+    font-family: 'Merriweather', serif; ;
+    font-size: 2.5rem;  /* Increase for emphasis */
+    font-weight: 300;  /* Lighter weight for a modern look */
+    margin-bottom: 30px;  /* Space between heading and content */
+    color: #005662;  /* A color that stands out but fits the theme */
 }
 
 .our-specialization .cards {
     display: flex;
-    justify-content: space-around; /* Evenly space the cards */
-    flex-wrap: wrap; /* Wrap onto new lines on smaller screens */
+    justify-content: space-around; /* Evenly distribute space around cards */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px; /* Control maximum width of the container */
 }
-
 .our-specialization .card {
-    width: 300px; /* Fixed width for each card */
-    margin-bottom: 20px; /* Space between rows when wrapped */
-    padding: 20px; /* Padding within the card */
-    background: #fff; /* Card background */
-    border-radius: 20px; /* Rounded corners like in the screenshot */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover effects */
+    width: 300px; /* Fixed width */
+    margin: 10px; /* Margin around each card */
+    background-color: #ffffff; /* White background */
+    border-radius: 10px; /* Rounded corners for modern appearance */
+    box-shadow: 0 8px 16px #00566216; /* Subtle shadow for depth */
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+    overflow: hidden; /* Ensures nothing overflows the rounded corners */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items in the card */
+    padding: 20px;
 }
 
 .our-specialization .card:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+    transform: translateY(-5px); /* Lift card slightly on hover */
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2); /* More pronounced shadow on hover */
 }
-
 .our-specialization .card-icon img {
     max-width: 60px; /* Adjust icon size */
     margin-bottom: 20px; /* Spacing below icon */
 }
 
 .our-specialization .card h3 {
-    font-size: 1.4rem;
-    color: #333; /* Dark color for card titles */
+    font-family: 'Merriweather', serif; ;
+    font-size: 1.2rem; /* Adjust font size */
+    color: #333; /* Dark text for readability */
+    margin: 10px 0 5px 0; /* Spacing around header */
 }
 
 .our-specialization .card p {
-    font-size: 1rem;
-    color: #666; /* Lighter color for card text */
-    margin-bottom: 20px; /* Spacing below paragraph */
+    text-align: center; /* Center align text */
+    color: #000000; /* Lighter text color for less emphasis */
+    font-size: 0.9rem; /* Smaller font size */
+    padding: 0 10px; /* Padding for text */
 }
-
-.our-specialization .card-link {
+.our-specialization .card hr {
+    border: none;
+    height: 1px;
+    background-color: #ccc; /* Light gray line */
+    margin: 20px 0; /* Spacing around the line */
+    width: 80%; /* Line width less than card width for aesthetics */
+}
+.our-specialization .card .card-link {
     color: #008a94; /* Brand color for links */
     text-decoration: none; /* No underline */
     font-weight: bold; /* Make it stand out */
+    margin-top: 5px; /* Small space from the line to the link */
+    transition: color 0.3s; /* Smooth transition for hover effect */
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .our-specialization .cards {
-        flex-direction: column;
-        align-items: center; /* Align cards to center on smaller screens */
-    }
+.our-specialization .card .card-link:hover {
+    color: #006972; /* Darker shade on hover */
+}
 
+@media (max-width: 1024px) {
     .our-specialization .card {
-        width: 80%; /* Full width cards on smaller screens */
-        margin-bottom: 40px; /* Increased space between cards */
+        width: 45%; /* Two cards per row in smaller viewports */
     }
 }
 
+@media (max-width: 768px) {
+    .our-specialization .card {
+        width: 100%; /* Full width on smallest screens */
+    }
+}
 /* ... existing styles ... */
