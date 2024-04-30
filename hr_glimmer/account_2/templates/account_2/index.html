@@ -11,19 +11,6 @@
     <body>
         <div class="navbar">
             <div class="navbar-container">
-<<<<<<< HEAD
-                <a href="#home" class="navbar-logo">
-                    HR<span>Consultingg</span>
-                </a>
-                <ul class="navbar-menu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="./services.html">Our Services</a></li>
-                    <li><a href="{%url 'Pricing'%}">Pricing</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
-                </ul>
-                <a href="{% url 'user_login' %}" class="button"><button class="navbar-login-button">Login</button></a>
-
-=======
                 <a href="#" class="navbar-logo">Hr<span>Consulting</span></a>
                 <button class="navbar-toggler" type="button">
                     <span class="navbar-toggler-icon"></span>
@@ -36,9 +23,8 @@
                         <li><a href="#">Pricing</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
-                    <button class="navbar-login-button" onclick="location.href='#login';">Log In</button>
+                    <a class="navbar-login-button" href="{%url 'user_login'%}">Log In</button></a>
                 </div>
->>>>>>> 22295ff35bcbe661bf25783fcde584e9851e3a98
             </div>
         </div>
     </header>
